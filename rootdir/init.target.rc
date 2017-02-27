@@ -6,6 +6,14 @@ on init
     export VIBE_PIPE_PATH /dev/pipes
     mkdir /dev/pipes 0771 shell shell
 
+#########################################################################################################################
+on post-fs-data
+#########################################################################################################################
+
+    chmod 0666 /proc/cmdline
+    symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
+    symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
+
 # MDM requirement
     mkdir /data/cp_log
     chmod 0775 /data/cp_log
@@ -46,7 +54,7 @@ on post-fs-data
     symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
     symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
 
-# wifi
+# Wifi
     write /data/.cid.info 0
     restorecon /data/.cid.info
 
@@ -80,6 +88,9 @@ on post-fs-data
 # Allow qmuxd to assign port open wait time
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
     chmod 666 /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
+# Allow QMUX daemon to assign port open wait time
+    chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
+    chmod 0666 /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
 
 # To prevent out of order acknowledgements from making
 # connection tracking to treat them as not belonging to
@@ -118,7 +129,12 @@ on post-fs-data
     mkdir /data/misc/location/mq 0770 gps gps
     mkdir /data/misc/location/xtwifi 0770 gps gps
 
+
 # SISO-ANDR_PERF :: START Changing scheduler to cfq and reseting cpu min freq to -1 after boot complete
+#########################################################################################################################
+on boot
+#########################################################################################################################
+
 on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/scheduler cfq
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor pegasusq

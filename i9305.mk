@@ -80,6 +80,18 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     com.android.nfc_extras
+    com.android.nfc_extras \
+    Stk \
+    SamsungServiceMode
+
+# Samsung symbols
+PRODUCT_PACKAGES += \
+    libsamsung_symbols
+
+# RIL
+PRODUCT_PROPERTY_OVERRIDES += \
+    mobiledata.interfaces=pdp0,gprs,ppp0,rmnet0,rmnet1 \
+    ro.telephony.ril_class=smdk4x12QComRIL
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -93,5 +105,7 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, vendor/samsung/i9305/i9305-vendor.mk)
 
 # Include common makefile
+$(call inherit-product, vendor/samsung/t0lte/t0lte-common-vendor.mk)
+
 $(call inherit-product, device/samsung/smdk4412-common/common.mk)
 $(call inherit-product, device/samsung/smdk4412-qcom-common/common.mk)
