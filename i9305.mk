@@ -44,6 +44,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     DeviceSettings
 
+# Proprietary blobs dependency on libstlport
+PRODUCT_PACKAGES +=  libstlport
+
 # NFC
 PRODUCT_PACKAGES += \
     nfc.exynos4 \
