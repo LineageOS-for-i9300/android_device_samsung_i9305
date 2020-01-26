@@ -44,6 +44,7 @@
 #include <audio_effects/effect_aec.h>
 
 #include "audio_hw.h"
+#include "ril_interface.h"
 
 struct pcm_config pcm_config_mm = {
     .channels = 2,
