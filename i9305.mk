@@ -36,9 +36,17 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/tiny_hw.xml:system/etc/sound/m3
 
-# Camera
+# Telephony
 PRODUCT_PACKAGES += \
-    camera.smdk4x12
+    qti-telephony-common \
+    telephony-ext 
+    
+PRODUCT_BOOT_JARS += \
+    telephony-ext
+
+# Keylayout
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
 
 # Product specific Packages
 PRODUCT_PACKAGES += \
