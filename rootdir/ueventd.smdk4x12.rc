@@ -77,4 +77,9 @@
 /dev/hsic*		0666	system	radio
 /dev/usb/lp*		0660	system	usb
 /dev/ttyGS0		0660	system	system
+/dev/umts*                0660   system     radio
+/dev/lte*                 0660   system     radio 
+/dev/cdma*                0660   system     radio 
+/dev/link_pm              0660   system     radio
+
 /sys/devices/virtual/input/input*	poll_delay	0660	system	radio
